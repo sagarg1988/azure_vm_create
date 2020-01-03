@@ -1,0 +1,14 @@
+# Pack reference. It can only contain letters, digits and underscores.
+ref: azure_vm_create
+name: Azure VM Create
+description: Our project goal to create VM in Azure.
+keywords:
+    - Create VM
+version: 1.1.0
+python_versions:
+  - "2"
+  - "3"
+author: Mukesh Kumar.
+email: mukesh.kumar_5375@nihilent.com
+contributors:
+  - "Mukesh Kumar <mukesh.kumar_5375@nihilent.com>"
