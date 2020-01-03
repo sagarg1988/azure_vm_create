@@ -1,5 +1,6 @@
 ---
   name: "vm_create"
+  class_name: "SendEmail"
   runner_type: "python-script"
   description: "Create a VM"
   enabled: true
