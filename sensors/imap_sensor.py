@@ -28,6 +28,7 @@ class IMAPSensor(PollingSensor):
         self._trigger = 'azure_vm_create.imap.message'
         self._logger = self._sensor_service.get_logger(__name__)
         self._accounts = {}
+        self._logger.debug('[IMAPSensor]: Init executed')
 
     def setup(self):
         self._logger.debug('[IMAPSensor]: entering setup')
@@ -65,13 +66,13 @@ class IMAPSensor(PollingSensor):
 
     def _parse_accounts(self, accounts):
         for config in accounts:
-            mailbox = config.get('name', None)
-            server = config.get('server', 'localhost')
-            port = config.get('port', 143)
-            user = config.get('username', None)
-            password = config.get('password', None)
+            mailbox = config.get('name', 'Mukesh')
+            server = config.get('server', 'imap.gmail.com')
+            port = config.get('port', 993)
+            user = config.get('username', 'test.nihilent.5375@gmail.com')
+            password = config.get('password', 'nihilent@123')
             folder = config.get('folder', 'INBOX')
-            ssl = config.get('secure', False)
+            ssl = config.get('secure', True)
 
             if not user or not password:
                 self._logger.debug("""[IMAPSensor]: Missing
