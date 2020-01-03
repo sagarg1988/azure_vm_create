@@ -266,3 +266,48 @@ class SendEmail(Action):
         #     GROUP_NAME, VM_NAME)
         # async_vm_delete.wait()
         return
+
+def create_nic(network_client):
+    """Create a Network Interface for a VM.
+    """
+    # Create VNet
+    print('\nCreate Vnet')
+    async_vnet_creation = network_client.virtual_networks.create_or_update(
+        GROUP_NAME,
+        VNET_NAME,
+        {
+            'location': LOCATION,
+            'address_space': {
+                'address_prefixes': ['10.0.0.0/17']
+            }
+        }
+    )
+    async_vnet_creation.wait()
+
+    # Create Subnet
+    print('\nCreate Subnet')
+    async_subnet_creation = network_client.subnets.create_or_update(
+        GROUP_NAME,
+        VNET_NAME,
+        SUBNET_NAME,
+        {'address_prefix': '10.0.0.0/24'}
+    )
+    subnet_info = async_subnet_creation.result()
+
+    # Create NIC
+    print('\nCreate NIC')
+    async_nic_creation = network_client.network_interfaces.create_or_update(
+        GROUP_NAME,
+        NIC_NAME,
+        {
+            'location': LOCATION,
+            'ip_configurations': [{
+                'name': IP_CONFIG_NAME,
+                'subnet': {
+                    'id': subnet_info.id
+                }
+            }]
+        }
+    )
+    return async_nic_creation.result()
+
