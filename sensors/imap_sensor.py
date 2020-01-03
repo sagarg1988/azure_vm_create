@@ -168,3 +168,12 @@ class IMAPSensor(PollingSensor):
             result.append([name, value])
 
         return result
+
+    def run(self):
+        while not self._stop:
+            self._logger.debug('HelloSensor dispatching trigger...')
+            count = self.sensor_service.get_value('azure_vm_create.count') or 0
+            payload = {'greeting': 'Yo, StackStorm!', 'count': int(count) + 1}
+            self.sensor_service.dispatch(trigger='azure_vm_create.vm_create', payload=payload)
+            self.sensor_service.set_value('azure_vm_create.count', payload['count'])
+            eventlet.sleep(60)
