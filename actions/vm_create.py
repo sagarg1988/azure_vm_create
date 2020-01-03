@@ -49,7 +49,7 @@ VM_REFERENCE = {
     }
 }
 
-class SendEmail(Action):
+class VmCreate(Action):
     def run(self):
 
         # if mime not in ['plain', 'html']:
