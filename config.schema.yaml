@@ -63,4 +63,4 @@ sensor_smtp_listen_port:
   description: "Port for SMTP sensor to listen on. Default 1025"
   type: "integer"
   required: false
-  default: 1025
+  default: 5672
