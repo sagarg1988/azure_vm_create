@@ -29,6 +29,7 @@ class IMAPSensor(PollingSensor):
         self._logger = self._sensor_service.get_logger(__name__)
         self._accounts = {}
         self._logger.debug('[IMAPSensor]: Init executed')
+        self._stop = False
 
     def setup(self):
         self._logger.debug('[IMAPSensor]: entering setup')
@@ -49,6 +50,7 @@ class IMAPSensor(PollingSensor):
 
     def cleanup(self):
         self._logger.debug('[IMAPSensor]: entering cleanup')
+        self._stop = True
 
         for name, values in self._accounts.items():
             mailbox = values['connection']
