@@ -68,11 +68,11 @@ class IMAPSensor(PollingSensor):
 
     def _parse_accounts(self, accounts):
         for config in accounts:
-            mailbox = config.get('name', 'Mukesh')
+            mailbox = config.get('name', 'sagarg.1988')
             server = config.get('server', 'imap.gmail.com')
             port = config.get('port', 993)
-            user = config.get('username', 'test.nihilent.5375@gmail.com')
-            password = config.get('password', 'nihilent@123')
+            user = config.get('username', 'sagarg.1988@gmail.com')
+            password = config.get('password', 'sagarg')
             folder = config.get('folder', 'INBOX')
             ssl = config.get('secure', True)
 
